@@ -5,6 +5,7 @@ class HangmanCanvas {
   }
 
   createBoard() {
+    this.context.clearRect(0, 0, 1200, 800);
     this.context.lineWidth = 3;
     this.context.strokeStyle = 'black';
     this.context.beginPath();
