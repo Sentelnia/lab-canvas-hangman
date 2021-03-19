@@ -57,7 +57,7 @@ class HangmanCanvas {
     let number = index * 60
     this.context.beginPath();
     this.context.moveTo(x, 650);
-    this.context.font = 'bold 45px san-serif'
+    this.context.font = 'bold 45px arial'
     this.context.fillText(hangman.secretWord[index].toUpperCase() , x + 5 + number, 690);
   }
 
@@ -65,13 +65,69 @@ class HangmanCanvas {
     let number = errorsLeft * 40 ;
     this.context.beginPath();
     this.context.moveTo(1000, 200);
-    this.context.font = 'bold 45px san-serif'
+    this.context.font = 'bold 45px arial'
     this.context.fillText(letter.toUpperCase() , 1100 - number + 5 , 200);
     
   }
 
   drawHangman(errorsLeft) {
-    // ... your code goes here
+    this.context.strokeStyle = 'white';
+    this.context.lineWidth = 6;
+    switch (errorsLeft){
+      case 9 : 
+        this.context.moveTo(635, 490);
+        this.context.lineTo(550, 400);
+        this.context.stroke();
+        break;
+      case 8 :
+        this.context.moveTo(550, 400);
+        this.context.lineTo(465, 490);
+        this.context.stroke();
+        break;
+      case 7 :
+        this.context.moveTo(552, 300);
+        this.context.lineTo(626, 280);
+        this.context.stroke();
+        break;
+      case 6 :
+        this.context.moveTo(548, 300);
+        this.context.lineTo(474, 280);
+        this.context.stroke();
+        break;
+      case 5 :
+        this.context.moveTo(550, 251);
+        this.context.lineTo(550, 400);
+        this.context.stroke();
+        break;
+      case 4 :
+        this.context.moveTo(550, 150);
+        this.context.arc(550, 200, 50, 0, Math.PI*2);
+        this.context.stroke();
+        break;
+      case 3 :
+        this.context.moveTo(550, 150);
+        this.context.lineTo(550, 98);
+        this.context.stroke();
+        break;
+      case 2 :
+        this.context.moveTo(550, 100);
+        this.context.lineTo(248, 100);
+        this.context.stroke();
+        break;
+      case 1 :
+        this.context.moveTo(250, 100);
+        this.context.lineTo(250, 650);
+        this.context.stroke();
+        break;
+      case 0 :
+        this.context.moveTo(200, 700);
+        this.context.lineTo(300, 700);
+        this.context.lineTo(250, 650);
+        this.context.lineTo(200, 700);
+        this.context.stroke();
+        break;
+
+    }
   }
 
   gameOver() {
