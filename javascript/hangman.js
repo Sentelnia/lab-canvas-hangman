@@ -74,29 +74,36 @@ document.addEventListener('keydown', event => {
   // React to user pressing a key
   let keyCode = event.keyCode;
   let letter = event.key;
+  var number = 0;
   console.log(letter);
   //si c'est une lettre
   if(hangman.checkIfLetter(keyCode) === true) {
     //on regarde si la lettre est dans le mot secret
-
-    if(hangman.secretWord.includes(letter)){
-      //on l'ajoute dans la string correctletter
-      hangman.addCorrectLetter(letter)
-      //on l'ajoute sur l'écran
-      //si 2 fois a meme lettre
-      //sinon
-      let index = hangman.secretWord.indexOf(letter);
-      hangmanCanvas.writeCorrectLetter(index)
-      //on vérifie la victoire
-      hangman.checkWinner()
-      // si non,
+    if (hangman.secretWord.includes(letter)){
+      // on vérifie si elle est plusieurs fois dans secretword
+      // on transforme le secretWord en array
+      let secretWordArr = hangman.secretWord.split('');
+      console.log("array mot secret "  + secretWordArr);
+      secretWordArr.forEach(function (el) {
+        if(letter === el){
+          //on l'ajoute dans la string correctletter
+        hangman.addCorrectLetter(letter)
+        //sinon
+        let index = secretWordArr.indexOf(el, number);
+        number = index + 1;
+        hangmanCanvas.writeCorrectLetter(index)
+        //on vérifie la victoire
+        hangman.checkWinner()
+        }
+      });
+    // si non,
     } else { 
         //on vérifie que cette lettre n'est pas dans l'array des wrongsletters
         if(hangman.checkClickedLetters(letter)){
-          //on l'ajoute
-          hangman.addWrongLetter(letter) 
-          //on vérifie si il y a Game over
-          hangman.checkGameOver()
+        //on l'ajoute
+        hangman.addWrongLetter(letter) 
+        //on vérifie si il y a Game over
+        hangman.checkGameOver()
         }
     }
   }
