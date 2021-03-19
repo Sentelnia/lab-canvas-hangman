@@ -75,6 +75,7 @@ document.addEventListener('keydown', event => {
   let keyCode = event.keyCode;
   let letter = event.key;
   var number = 0;
+  let errorsLeft = hangman.errorsLeft
   console.log(letter);
   //si c'est une lettre
   if(hangman.checkIfLetter(keyCode) === true) {
@@ -88,7 +89,7 @@ document.addEventListener('keydown', event => {
         if(letter === el){
           //on l'ajoute dans la string correctletter
         hangman.addCorrectLetter(letter)
-        //sinon
+        //puis sur l'écran
         let index = secretWordArr.indexOf(el, number);
         number = index + 1;
         hangmanCanvas.writeCorrectLetter(index)
@@ -100,7 +101,9 @@ document.addEventListener('keydown', event => {
     } else { 
         //on vérifie que cette lettre n'est pas dans l'array des wrongsletters
         if(hangman.checkClickedLetters(letter)){
-        //on l'ajoute
+        //on l'ajoute sur lécran
+        hangmanCanvas.writeWrongLetter(letter, errorsLeft)
+        //puis dans les fausses lettres
         hangman.addWrongLetter(letter) 
         //on vérifie si il y a Game over
         hangman.checkGameOver()

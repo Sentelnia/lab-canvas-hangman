@@ -59,11 +59,14 @@ class HangmanCanvas {
     this.context.moveTo(x, 650);
     this.context.font = 'bold 45px san-serif'
     this.context.fillText(hangman.secretWord[index].toUpperCase() , x + 5 + number, 690);
-
   }
 
   writeWrongLetter(letter, errorsLeft) {
-    let x = 800;
+    let number = errorsLeft * 40 ;
+    this.context.beginPath();
+    this.context.moveTo(1000, 200);
+    this.context.font = 'bold 45px san-serif'
+    this.context.fillText(letter.toUpperCase() , 1100 - number + 5 , 200);
     
   }
 
